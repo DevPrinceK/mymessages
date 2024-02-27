@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mymessages/constants.dart/colors.dart';
+import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/screens/pages/onboarding.dart';
 
 class LoadingScreen extends StatefulWidget {

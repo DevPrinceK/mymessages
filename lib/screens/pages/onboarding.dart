@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mymessages/constants.dart/colors.dart';
+import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/screens/pages/home.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -47,7 +47,7 @@ class OnboardingScreen extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => HomeScreen(),
                       ),
                       (route) => false,
                     );

@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:mymessages/constants.dart/colors.dart';
+import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/screens/tabs/audios.dart';
 import 'package:mymessages/screens/tabs/dashboard.dart';
 import 'package:mymessages/screens/tabs/text.dart';
 import 'package:mymessages/screens/tabs/videos.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  int currentIndex;
+  HomeScreen({super.key, this.currentIndex = 0});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int currentIndex = 0;
+  // int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         // dynamic body
-        body: _buildBody(currentIndex),
+        body: _buildBody(widget.currentIndex),
 
         // bottom navigation bar
         bottomNavigationBar: BottomNavigationBar(
@@ -30,10 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             setState(() {
-              currentIndex = index;
+              widget.currentIndex = index;
             });
           },
-          currentIndex: currentIndex,
+          currentIndex: widget.currentIndex,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
