@@ -3,7 +3,7 @@ import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
 
 class VideoScreen extends StatefulWidget {
-  const VideoScreen({super.key});
+  VideoScreen({super.key});
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
