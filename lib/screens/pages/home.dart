@@ -20,7 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         // dynamic body
-        body: _buildBody(widget.currentIndex),
+        body: _buildBody(
+          widget.currentIndex,
+        ),
 
         // bottom navigation bar
         bottomNavigationBar: BottomNavigationBar(
@@ -43,8 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: primaryColor700,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.lightbulb_outline),
-              activeIcon: Icon(Icons.lightbulb),
+              icon: Icon(Icons.video_camera_back_outlined),
+              activeIcon: Icon(Icons.video_camera_back),
               label: 'Videos',
               backgroundColor: primaryColor700,
             ),
@@ -70,11 +72,11 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return const DashboardScreen();
       case 1:
-        return const VideoScreen();
+        return VideoScreen();
       case 2:
         return const AudioScreen();
       case 3:
-        return const TextScreen();
+        return TextScreen();
       default:
         return const DashboardScreen();
     }
