@@ -20,7 +20,7 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 const Text(
-                  'Welcome to MyMessages',
+                  'Welcome to myMessages',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
