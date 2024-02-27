@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
+import 'package:mymessages/screens/pages/text_details.dart';
 
 class TextScreen extends StatefulWidget {
-  const TextScreen({super.key});
+  bool isDetailsPage;
+  TextScreen({super.key, this.isDetailsPage = false});
 
   @override
   State<TextScreen> createState() => _TextScreenState();
@@ -95,35 +98,50 @@ class _TextScreenState extends State<TextScreen> {
                     return Card(
                       elevation: 3,
                       shadowColor: primaryColor900,
-                      child: Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        child: Column(
-                          children: [
-                            Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.2 - 35,
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: const DecorationImage(
-                                  image:
-                                      AssetImage('assets/imgs/scripture.jpg'),
-                                  fit: BoxFit.cover,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TextDetailScreen(
+                                title: 'Message Title $index',
+                                message: loremIpsum(words: 200, paragraphs: 1),
+                                preacher: 'Prof. Yaokuma',
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          color: Colors.white,
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: Column(
+                            children: [
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2 -
+                                        35,
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: const DecorationImage(
+                                    image:
+                                        AssetImage('assets/imgs/scripture.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              "Text Title $index",
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
+                              const SizedBox(height: 5),
+                              Text(
+                                "Text Title $index",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
