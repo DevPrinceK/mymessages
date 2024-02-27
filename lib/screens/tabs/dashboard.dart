@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/filterbutton.dart';
 import 'package:mymessages/constants/widgets/mediabox.dart';
@@ -162,7 +160,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       builder: (context) =>
                                           HomeScreen(currentIndex: 1),
                                     ),
-                                    // (route) => false,
                                   );
                                 },
                                 child: const Text("See all"),
@@ -201,7 +198,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomeScreen(currentIndex: 2),
+                                    ),
+                                  );
+                                },
                                 child: const Text("See all"),
                               )
                             ],
@@ -238,7 +243,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomeScreen(currentIndex: 3),
+                                    ),
+                                  );
+                                },
                                 child: const Text("See all"),
                               )
                             ],
@@ -250,17 +263,65 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                mediaBox(
-                                    context, "text", "The Power of Prayer"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeScreen(
+                                          currentIndex: 3,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(
+                                      context, "text", "The Power of Prayer"),
+                                ),
                                 const SizedBox(width: 10),
-                                mediaBox(
-                                    context, "text", "Christ's saving grace"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeScreen(
+                                          currentIndex: 3,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(
+                                      context, "text", "Christ's saving grace"),
+                                ),
                                 const SizedBox(width: 10),
-                                mediaBox(
-                                    context, "text", "The Gifts of the Holy"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeScreen(
+                                          currentIndex: 3,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(
+                                      context, "text", "The Gifts of the Holy"),
+                                ),
                                 const SizedBox(width: 10),
-                                mediaBox(
-                                    context, "text", "The Power of the Holy"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomeScreen(
+                                          currentIndex: 3,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(
+                                      context, "text", "The Power of the Holy"),
+                                ),
                               ],
                             ),
                           ),
