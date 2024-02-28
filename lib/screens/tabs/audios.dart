@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
+import 'package:mymessages/screens/pages/audio_playing.dart';
 
 class AudioScreen extends StatefulWidget {
   const AudioScreen({super.key});
@@ -88,42 +89,57 @@ class _AudioScreenState extends State<AudioScreen> {
               Container(
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: GridView.builder(
-                  // clipBehavior: Clip.none,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
                   itemBuilder: (context, index) {
                     return Card(
                       elevation: 3,
                       shadowColor: primaryColor900,
-                      child: Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        child: Column(
-                          children: [
-                            Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.2 - 35,
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: const DecorationImage(
-                                  image:
-                                      AssetImage('assets/imgs/microphone.jpg'),
-                                  fit: BoxFit.cover,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlayAudioScreen(
+                                title: 'Audio Title $index',
+                                audio:
+                                    'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
+                                preacher: 'Prof. Yaokuma',
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          color: Colors.white,
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: Column(
+                            children: [
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2 -
+                                        35,
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: const DecorationImage(
+                                    image: AssetImage(
+                                        'assets/imgs/microphone.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              "Audio Title $index",
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
+                              const SizedBox(height: 5),
+                              Text(
+                                "Audio Title $index",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
