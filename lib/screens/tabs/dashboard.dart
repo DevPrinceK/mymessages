@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/filterbutton.dart';
 import 'package:mymessages/constants/widgets/mediabox.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
+import 'package:mymessages/screens/pages/audio_playing.dart';
 import 'package:mymessages/screens/pages/home.dart';
+import 'package:mymessages/screens/pages/text_details.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -30,7 +33,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         foregroundColor: Colors.white,
         leading: const Icon(Icons.person_pin, size: 40),
         title: const Text(
-          "King Prince",
+          "Home",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -42,7 +45,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Icon(
               Icons.notifications,
               size: 30.0,
-              // color: Colors.white,
             ),
           ),
         ],
@@ -217,17 +219,77 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                mediaBox(
-                                    context, "audio", "The Power of Prayer"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PlayAudioScreen(
+                                          title: 'Audio Title 1',
+                                          audio:
+                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
+                                          preacher: 'Prof. Yaokuma',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(
+                                      context, "audio", "The Power of Prayer"),
+                                ),
                                 const SizedBox(width: 10),
-                                mediaBox(
-                                    context, "audio", "Christ's saving grace"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PlayAudioScreen(
+                                          title: 'Audio Title 2',
+                                          audio:
+                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
+                                          preacher: 'Prof. Yaokuma',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(context, "audio",
+                                      "Christ's saving grace"),
+                                ),
                                 const SizedBox(width: 10),
-                                mediaBox(context, "audio",
-                                    "The Gifts of the Holy Spirit"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PlayAudioScreen(
+                                          title: 'Audio Title 3',
+                                          audio:
+                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
+                                          preacher: 'Prof. Yaokuma',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(context, "audio",
+                                      "The Gifts of the Holy Spirit"),
+                                ),
                                 const SizedBox(width: 10),
-                                mediaBox(context, "audio",
-                                    "The Power of the Holy Spirit"),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PlayAudioScreen(
+                                          title: 'Audio Title 4',
+                                          audio:
+                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
+                                          preacher: 'Prof. Yaokuma',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: mediaBox(context, "audio",
+                                      "The Power of the Holy Spirit"),
+                                ),
                               ],
                             ),
                           ),
@@ -268,8 +330,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomeScreen(
-                                          currentIndex: 3,
+                                        builder: (context) => TextDetailScreen(
+                                          title: 'Message Title 1',
+                                          message: loremIpsum(
+                                              words: 200, paragraphs: 1),
+                                          preacher: 'Prof. Yaokuma',
                                         ),
                                       ),
                                     );
@@ -283,8 +348,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomeScreen(
-                                          currentIndex: 3,
+                                        builder: (context) => TextDetailScreen(
+                                          title: 'Message Title 2',
+                                          message: loremIpsum(
+                                              words: 200, paragraphs: 1),
+                                          preacher: 'Prof. Yaokuma',
                                         ),
                                       ),
                                     );
@@ -298,8 +366,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomeScreen(
-                                          currentIndex: 3,
+                                        builder: (context) => TextDetailScreen(
+                                          title: 'Message Title 3',
+                                          message: loremIpsum(
+                                              words: 200, paragraphs: 1),
+                                          preacher: 'Prof. Yaokuma',
                                         ),
                                       ),
                                     );
@@ -313,8 +384,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => HomeScreen(
-                                          currentIndex: 3,
+                                        builder: (context) => TextDetailScreen(
+                                          title: 'Message Title 4',
+                                          message: loremIpsum(
+                                              words: 200, paragraphs: 1),
+                                          preacher: 'Prof. Yaokuma',
                                         ),
                                       ),
                                     );

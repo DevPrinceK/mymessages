@@ -83,7 +83,6 @@ class _PlayAudioScreenState extends State<PlayAudioScreen> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
             Container(
