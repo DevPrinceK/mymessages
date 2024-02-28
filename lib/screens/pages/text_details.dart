@@ -20,7 +20,6 @@ class TextDetailScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: primaryColor900,
         foregroundColor: Colors.white,
-        leading: const Icon(Icons.person_pin, size: 40),
         title: const Text(
           "Text",
           style: TextStyle(
@@ -39,7 +38,7 @@ class TextDetailScreen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Text(
@@ -60,6 +59,13 @@ class TextDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor500,
+        foregroundColor: Colors.white,
+        shape: const CircleBorder(),
+        onPressed: () {},
+        child: const Icon(Icons.share),
       ),
     );
   }
