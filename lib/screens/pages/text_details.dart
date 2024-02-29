@@ -21,7 +21,7 @@ class TextDetailScreen extends StatelessWidget {
         backgroundColor: primaryColor900,
         foregroundColor: Colors.white,
         title: const Text(
-          "Text",
+          "Textual Gospel",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -38,26 +38,29 @@ class TextDetailScreen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+        padding: const EdgeInsets.all(15),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
-            ),
-            Text(
-              message,
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.justify,
-            ),
-            Text(
-              "-- $preacher",
-              textAlign: TextAlign.right,
-            ),
-          ],
+              Text(
+                message,
+                style: const TextStyle(fontSize: 16),
+                textAlign: TextAlign.justify,
+              ),
+              Text(
+                "-- $preacher",
+                textAlign: TextAlign.right,
+              ),
+              const SizedBox(height: 50),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
