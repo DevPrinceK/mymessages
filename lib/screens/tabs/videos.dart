@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
+import 'package:mymessages/models/data_model.dart';
 
 class VideoScreen extends StatefulWidget {
-  VideoScreen({super.key});
+  const VideoScreen({super.key});
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
 }
 
 class _VideoScreenState extends State<VideoScreen> {
+  List<VideoModel> videos = List.generate(
+    20,
+    (index) => VideoModel(
+      title: loremIpsum(words: 5, paragraphs: 1),
+      thumbnail: "assets/imgs/video.jpg",
+      videoUrl: "https://www.youtube.com/watch?v=6JYIGclVQdw",
+      preacher: "Professor Yaokumah",
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,21 +31,12 @@ class _VideoScreenState extends State<VideoScreen> {
         foregroundColor: Colors.white,
         leading: const Icon(Icons.person_pin, size: 40),
         title: const Text(
-          "Video",
+          "Visual Gospel",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Icon(
-              Icons.favorite,
-              size: 30.0,
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -85,11 +88,12 @@ class _VideoScreenState extends State<VideoScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
+                    crossAxisCount: 2,
+                  ),
                   itemBuilder: (context, index) {
                     return Card(
                       elevation: 3,
@@ -106,15 +110,15 @@ class _VideoScreenState extends State<VideoScreen> {
                               width: MediaQuery.of(context).size.width * 0.45,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                image: const DecorationImage(
-                                  image: AssetImage('assets/imgs/video.jpg'),
+                                image: DecorationImage(
+                                  image: AssetImage(videos[index].thumbnail),
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              "Video Title $index",
+                              videos[index].title,
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -126,7 +130,7 @@ class _VideoScreenState extends State<VideoScreen> {
                       ),
                     );
                   },
-                  itemCount: 20,
+                  itemCount: videos.length,
                   shrinkWrap: true,
                   physics: const AlwaysScrollableScrollPhysics(),
                 ),
