@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
+import 'package:mymessages/models/data_model.dart';
 import 'package:mymessages/screens/pages/text_details.dart';
 
 class TextScreen extends StatefulWidget {
@@ -13,6 +14,15 @@ class TextScreen extends StatefulWidget {
 }
 
 class _TextScreenState extends State<TextScreen> {
+  List<TextModel> texts = List.generate(
+    20,
+    (index) => TextModel(
+      title: loremIpsum(words: 5, paragraphs: 1),
+      message: loremIpsum(words: 500, paragraphs: 1),
+      preacher: "Prof. Yaokuma",
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,21 +32,12 @@ class _TextScreenState extends State<TextScreen> {
         foregroundColor: Colors.white,
         leading: const Icon(Icons.person_pin, size: 40),
         title: const Text(
-          "Text",
+          "Textual Gospel",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Icon(
-              Icons.favorite,
-              size: 30.0,
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -88,7 +89,7 @@ class _TextScreenState extends State<TextScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -104,9 +105,9 @@ class _TextScreenState extends State<TextScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => TextDetailScreen(
-                                title: 'Message Title $index',
-                                message: loremIpsum(words: 200, paragraphs: 1),
-                                preacher: 'Prof. Yaokuma',
+                                title: texts[index].title,
+                                message: texts[index].message,
+                                preacher: texts[index].preacher,
                               ),
                             ),
                           );
@@ -133,7 +134,7 @@ class _TextScreenState extends State<TextScreen> {
                               ),
                               const SizedBox(height: 5),
                               Text(
-                                "Text Title $index",
+                                texts[index].title,
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -146,7 +147,7 @@ class _TextScreenState extends State<TextScreen> {
                       ),
                     );
                   },
-                  itemCount: 20,
+                  itemCount: texts.length,
                   shrinkWrap: true,
                   physics: const AlwaysScrollableScrollPhysics(),
                 ),
