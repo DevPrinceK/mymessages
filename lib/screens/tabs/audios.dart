@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
+import 'package:mymessages/models/data_model.dart';
 import 'package:mymessages/screens/pages/audio_playing.dart';
 
 class AudioScreen extends StatefulWidget {
@@ -11,6 +13,16 @@ class AudioScreen extends StatefulWidget {
 }
 
 class _AudioScreenState extends State<AudioScreen> {
+  List<AudioModel> audios = List.generate(
+    20,
+    (index) => AudioModel(
+      title: loremIpsum(words: 5, paragraphs: 1),
+      audioUrl:
+          "https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3",
+      preacher: "Prof. Yaokuma",
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,21 +32,12 @@ class _AudioScreenState extends State<AudioScreen> {
         foregroundColor: Colors.white,
         leading: const Icon(Icons.person_pin, size: 40),
         title: const Text(
-          "Audio",
+          "Audio Gospel",
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Icon(
-              Icons.favorite,
-              size: 30.0,
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -86,11 +89,12 @@ class _AudioScreenState extends State<AudioScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
+                    crossAxisCount: 2,
+                  ),
                   itemBuilder: (context, index) {
                     return Card(
                       elevation: 3,
@@ -101,10 +105,9 @@ class _AudioScreenState extends State<AudioScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => PlayAudioScreen(
-                                title: 'Audio Title $index',
-                                audio:
-                                    'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
-                                preacher: 'Prof. Yaokuma',
+                                title: audios[index].title,
+                                audio: audios[index].audioUrl,
+                                preacher: audios[index].preacher,
                               ),
                             ),
                           );
@@ -130,12 +133,16 @@ class _AudioScreenState extends State<AudioScreen> {
                                 ),
                               ),
                               const SizedBox(height: 5),
-                              Text(
-                                "Audio Title $index",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.ellipsis,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4),
+                                child: Text(
+                                  audios[index].title,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                             ],
@@ -144,7 +151,7 @@ class _AudioScreenState extends State<AudioScreen> {
                       ),
                     );
                   },
-                  itemCount: 20,
+                  itemCount: audios.length,
                   shrinkWrap: true,
                   physics: const AlwaysScrollableScrollPhysics(),
                 ),
