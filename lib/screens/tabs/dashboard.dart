@@ -4,6 +4,7 @@ import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/filterbutton.dart';
 import 'package:mymessages/constants/widgets/mediabox.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
+import 'package:mymessages/models/data_model.dart';
 import 'package:mymessages/screens/pages/audio_playing.dart';
 import 'package:mymessages/screens/pages/home.dart';
 import 'package:mymessages/screens/pages/text_details.dart';
@@ -16,6 +17,35 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  List<VideoModel> topVideos = List.generate(
+    5,
+    (index) => VideoModel(
+      title: loremIpsum(words: 5, paragraphs: 1),
+      thumbnail: "assets/imgs/video.jpg",
+      videoUrl: "https://www.youtube.com/watch?v=6JYIGclVQdw",
+      preacher: "Professor Yaokumah",
+    ),
+  );
+
+  List<AudioModel> topAudios = List.generate(
+    5,
+    (index) => AudioModel(
+      title: loremIpsum(words: 5, paragraphs: 1),
+      audioUrl:
+          "https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3",
+      preacher: "Prof. Yaokuma",
+    ),
+  );
+
+  List<TextModel> topTexts = List.generate(
+    5,
+    (index) => TextModel(
+      title: loremIpsum(words: 5, paragraphs: 1),
+      message: loremIpsum(words: 500, paragraphs: 1),
+      preacher: "Prof. Yaokuma",
+    ),
+  );
+
   var selectedButtonIndx = 10;
 
   void filterContent(filterIndx) {
@@ -173,19 +203,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                mediaBox(
-                                    context, "video", "The Power of Prayer"),
-                                const SizedBox(width: 10),
-                                mediaBox(
-                                    context, "video", "Christ's saving grace"),
-                                const SizedBox(width: 10),
-                                mediaBox(context, "video",
-                                    "The Gifts of the Holy Spirit"),
-                                const SizedBox(width: 10),
-                                mediaBox(context, "video",
-                                    "The Power of the Holy Spirit"),
-                              ],
+                              children: List.generate(
+                                topVideos.length,
+                                (index) => InkWell(
+                                  onTap: () {},
+                                  child: mediaBox(
+                                    context,
+                                    "video",
+                                    topVideos[index].title,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -218,79 +246,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                InkWell(
+                              children: List.generate(
+                                topAudios.length,
+                                (index) => InkWell(
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => PlayAudioScreen(
-                                          title: 'Audio Title 1',
-                                          audio:
-                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
-                                          preacher: 'Prof. Yaokuma',
+                                          title: topAudios[index].title,
+                                          audio: topAudios[index].audioUrl,
+                                          preacher: topAudios[index].preacher,
                                         ),
                                       ),
                                     );
                                   },
                                   child: mediaBox(
-                                      context, "audio", "The Power of Prayer"),
+                                    context,
+                                    "audio",
+                                    topAudios[index].title,
+                                  ),
                                 ),
-                                const SizedBox(width: 10),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PlayAudioScreen(
-                                          title: 'Audio Title 2',
-                                          audio:
-                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
-                                          preacher: 'Prof. Yaokuma',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: mediaBox(context, "audio",
-                                      "Christ's saving grace"),
-                                ),
-                                const SizedBox(width: 10),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PlayAudioScreen(
-                                          title: 'Audio Title 3',
-                                          audio:
-                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
-                                          preacher: 'Prof. Yaokuma',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: mediaBox(context, "audio",
-                                      "The Gifts of the Holy Spirit"),
-                                ),
-                                const SizedBox(width: 10),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PlayAudioScreen(
-                                          title: 'Audio Title 4',
-                                          audio:
-                                              'https://filesamples.com/samples/audio/mp3/Symphony%20No.6%20(1st%20movement).mp3',
-                                          preacher: 'Prof. Yaokuma',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: mediaBox(context, "audio",
-                                      "The Power of the Holy Spirit"),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -324,79 +301,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                InkWell(
+                              children: List.generate(
+                                topTexts.length,
+                                (index) => InkWell(
                                   onTap: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => TextDetailScreen(
-                                          title: 'Message Title 1',
-                                          message: loremIpsum(
-                                              words: 200, paragraphs: 1),
-                                          preacher: 'Prof. Yaokuma',
+                                          title: topTexts[index].title,
+                                          message: topTexts[index].message,
+                                          preacher: topTexts[index].preacher,
                                         ),
                                       ),
                                     );
                                   },
                                   child: mediaBox(
-                                      context, "text", "The Power of Prayer"),
+                                    context,
+                                    "text",
+                                    topTexts[index].title,
+                                  ),
                                 ),
-                                const SizedBox(width: 10),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => TextDetailScreen(
-                                          title: 'Message Title 2',
-                                          message: loremIpsum(
-                                              words: 200, paragraphs: 1),
-                                          preacher: 'Prof. Yaokuma',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: mediaBox(
-                                      context, "text", "Christ's saving grace"),
-                                ),
-                                const SizedBox(width: 10),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => TextDetailScreen(
-                                          title: 'Message Title 3',
-                                          message: loremIpsum(
-                                              words: 200, paragraphs: 1),
-                                          preacher: 'Prof. Yaokuma',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: mediaBox(
-                                      context, "text", "The Gifts of the Holy"),
-                                ),
-                                const SizedBox(width: 10),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => TextDetailScreen(
-                                          title: 'Message Title 4',
-                                          message: loremIpsum(
-                                              words: 200, paragraphs: 1),
-                                          preacher: 'Prof. Yaokuma',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: mediaBox(
-                                      context, "text", "The Power of the Holy"),
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                           const SizedBox(height: 150),
@@ -408,7 +334,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
           ),
-          // bottom space
         ],
       ),
     );
