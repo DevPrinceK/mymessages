@@ -7,9 +7,9 @@ import 'package:mymessages/models/data_model.dart';
 class NotificationDetails extends StatelessWidget {
   NotificationModel notification;
   NotificationDetails({
-    Key? key,
+    super.key,
     required this.notification,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
