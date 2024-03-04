@@ -3,6 +3,7 @@ import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mymessages/constants/colors.dart';
 import 'package:mymessages/constants/widgets/searchbox.dart';
 import 'package:mymessages/models/data_model.dart';
+import 'package:mymessages/screens/pages/video_player.dart';
 
 class VideoScreen extends StatefulWidget {
   const VideoScreen({super.key});
@@ -95,37 +96,49 @@ class _VideoScreenState extends State<VideoScreen> {
                     crossAxisCount: 2,
                   ),
                   itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 3,
-                      shadowColor: primaryColor900,
-                      child: Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        child: Column(
-                          children: [
-                            Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.2 - 35,
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: AssetImage(videos[index].thumbnail),
-                                  fit: BoxFit.cover,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                VideoMessagePlayer(video: videos[index]),
+                          ),
+                        );
+                      },
+                      child: Card(
+                        elevation: 3,
+                        shadowColor: primaryColor900,
+                        child: Container(
+                          color: Colors.white,
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          child: Column(
+                            children: [
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2 -
+                                        35,
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: AssetImage(videos[index].thumbnail),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              videos[index].title,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
+                              const SizedBox(height: 5),
+                              Text(
+                                videos[index].title,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
