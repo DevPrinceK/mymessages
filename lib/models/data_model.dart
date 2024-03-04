@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class VideoModel {
   String title;
   String preacher;
@@ -33,5 +35,17 @@ class TextModel {
     required this.title,
     required this.message,
     required this.preacher,
+  });
+}
+
+class NotificationModel {
+  String title;
+  String message;
+  DateTime date;
+
+  NotificationModel({
+    required this.title,
+    required this.message,
+    required this.date,
   });
 }

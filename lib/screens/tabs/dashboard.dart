@@ -7,6 +7,7 @@ import 'package:mymessages/constants/widgets/searchbox.dart';
 import 'package:mymessages/models/data_model.dart';
 import 'package:mymessages/screens/pages/audio_playing.dart';
 import 'package:mymessages/screens/pages/home.dart';
+import 'package:mymessages/screens/pages/notifications.dart';
 import 'package:mymessages/screens/pages/text_details.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -69,12 +70,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Icon(
-              Icons.notifications,
-              size: 30.0,
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationScreen(),
+                ),
+              );
+            },
+            child: const Padding(
+              padding: EdgeInsets.only(right: 12.0),
+              child: Icon(
+                Icons.notifications,
+                size: 30.0,
+              ),
             ),
           ),
         ],
