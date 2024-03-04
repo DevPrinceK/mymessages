@@ -9,6 +9,7 @@ import 'package:mymessages/screens/pages/audio_playing.dart';
 import 'package:mymessages/screens/pages/home.dart';
 import 'package:mymessages/screens/pages/notifications.dart';
 import 'package:mymessages/screens/pages/text_details.dart';
+import 'package:mymessages/screens/pages/video_player.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -217,7 +218,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               children: List.generate(
                                 topVideos.length,
                                 (index) => InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            VideoMessagePlayer(
+                                                video: topVideos[index]),
+                                      ),
+                                    );
+                                  },
                                   child: mediaBox(
                                     context,
                                     "video",
