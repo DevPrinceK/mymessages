@@ -16,8 +16,6 @@ class VideoMessagePlayer extends StatefulWidget {
 class _VideoMessagePlayerState extends State<VideoMessagePlayer> {
   late CustomVideoPlayerController _customVideoPlayerController;
 
-  // String videoUrl =
-  //     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
   String videoUrl =
       "https://file-examples.com/storage/fe7b7e0dc465e22bc9e6da8/2017/04/file_example_MP4_480_1_5MG.mp4";
 
@@ -35,8 +33,25 @@ class _VideoMessagePlayerState extends State<VideoMessagePlayer> {
           backgroundColor: primaryColor900,
           foregroundColor: Colors.white,
         ),
-        body: CustomVideoPlayer(
-          customVideoPlayerController: _customVideoPlayerController,
+        body: Column(
+          children: [
+            CustomVideoPlayer(
+              customVideoPlayerController: _customVideoPlayerController,
+            ),
+            Text(
+              widget.video.title,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "Preacher: ${widget.video.preacher}",
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
